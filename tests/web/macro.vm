@@ -1,0 +1,7 @@
+#parse("web/iii.vm")
+
+#macro( tablerows $color $somelist )
+  #foreach( $something in $somelist )
+    <tr><td bgcolor=$color>$something</td></tr>
+  #end
+#end
