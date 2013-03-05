@@ -1,0 +1,100 @@
+<section id="header-guibar" class="guibar container">
+	<div class="warp">
+		<div class="content">
+			
+			<div class="gui-collapse">
+				<ul class="gui-type">
+					<li class="gui-type-cell">
+						<h2><a href="/dongman/mos"><span class="icon-mos-1"></span>动漫</a></h2>
+						<ul class="gui-type-name">
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+						</ul>
+					</li>
+					<li class="gui-type-cell">
+						<h2><a href="/dongman/mos"><span class="icon-mos-2"></span>游戏</a></h2>
+						<ul class="gui-type-name">
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+						</ul>
+					</li>
+					<li class="gui-type-cell">
+						<h2><a href="/dongman/mos"><span class="icon-mos-3"></span>品牌</a></h2>
+						<ul class="gui-type-name">
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+						</ul>
+					</li>
+					<li class="gui-type-cell">
+						<h2><a href="/dongman/mos"><span class="icon-mos-4"></span>电影</a></h2>
+						<ul class="gui-type-name">
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+						</ul>
+					</li>
+					<li class="gui-type-cell">
+						<h2><a href="/dongman/mos"><span class="icon-mos-5"></span>原创</a></h2>
+						<ul>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+						</ul>
+					</li>
+					<li class="gui-type-cell">
+						<h2><a href="/dongman/mos"><span class="icon-mos-6"></span>分类</a></h2>
+						<ul class="gui-type-name">
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+							<li><a href="/dongman/1/mos">变形金刚</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<span class="handle"><a href="#">把手</a></span>
+			
+		</div>
+	</div>
+</section>
+<script>
+$(function() {
+	var eGui = $("#header-guibar"),
+		eHandle = eGui && $(".handle", eGui),
+		eWin = $(window),
+		eBody = $("html,body"),
+		state = "normal";
+	eGui && eWin.scroll(function () {
+		var stop = eWin.scrollTop();
+		if (stop > 136) {
+			state == "normal" && (state = "fixed") && eGui.addClass("guibar-fixed-top");
+		} else {
+			state == "fixed" && (state = "normal") && eGui.removeClass("guibar-fixed-top");
+		}
+	});
+	eHandle && eHandle.click(function(e) {
+		e.preventDefault();
+		eBody.animate({"scrollTop": 0}, 300);
+	});
+});
+</script>

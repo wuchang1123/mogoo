@@ -1,0 +1,15 @@
+#set($layout="main")
+sdsdsds
+#set($f=9)
+$f
+$test
+
+<ol>
+#foreach($user in $users)
+<li>$user.get("nick")</li>
+#end
+</ol>
+
+<script>
+console.log(_);
+</script>

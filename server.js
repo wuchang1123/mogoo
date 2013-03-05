@@ -5,26 +5,29 @@ var config     = require('config'),
 	app        = express(),
 	http       = require('http'),
 	path       = require('path'),
-	util       = require('./lib/utils'),
+	utils      = require('./lib/utils'),
 	dbtool     = require('./lib/db'),
 	mongoose   = config.db && dbtool.connectToDatabase(require('mongoose'), config.db),
-	mongoStore = config.db && require('connect-mongo')(express);
+	mongoStore = config.db && require('connect-mongo')(express),
+	global     = {};
 
-function cb(){
-	console.log(testjson);
-}
-
-var testjson = util.loadJson("t.json", function(data) {
-	testjson = data;
-	cb();
-});
+global.rootPath = __dirname;
 
 // Application setups
 app.configure('all', function () {
+	var renderFile = require(__dirname + "/" + config.view.enginePath).renderFile;
+    
     app.set('port', PORT);
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
-    app.set('view options', { layout: true });
+    
+    app.set('views', path.join(__dirname, config.view.tplPath));
+    app.set('view engine', config.view.engine);
+    app.engine('vm', renderFile);
+    //console.log(config.view.tplPath);
+    
+    //app.set('views', __dirname + '/views');
+    //app.set('view engine', 'jade');
+    //app.set('view options', { layout: true });
+    
     app.use(express.favicon());
     app.use(express.logger('dev'));
     app.use(express.cookieParser());
@@ -37,7 +40,6 @@ app.configure('all', function () {
     }));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.csrf());
     app.use(function(req, res, next) {
         res.locals.token = req.session._csrf;
@@ -51,10 +53,12 @@ app.configure('all', function () {
 
 // Error handling setup
 app.configure('development', function () {
+	app.set('debug', true);
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function() {
+    app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.errorHandler());
 });
 
@@ -64,18 +68,12 @@ app.configure('production', function() {
 //require('./models/User')(mongoose);
 
 // Register Controllers
-//['Blog', 'Site', 'User'].forEach(function (controller) {
-//    require('./controllers/' + controller + 'Controller')(app, mongoose, config);
-//});
+['site', 'assets'].forEach(function (controller) {
+    require('./lib/controllers/' + controller)(global, app, mongoose, config);
+});
 
 process.on('uncaughtException', function(err) {
     console.log(err);
-});
-
-app.get('/', function(req, res, next) {
-	//req.session.test = 99999;
-	//console.log(req.session.test);
-	res.send('hello world');
 });
 
 // Create server and listen application port specified above

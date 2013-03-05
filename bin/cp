@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+var rootPath = __dirname.replace(/\/bin$/, "");
+var nodePath = rootPath + "/node_modules";
+var exec     = require('child_process').exec;
+var argv     = process.argv.slice(2);
+var argType  = argv[0];
+
+if (argType) {
+	if (argType == "velocity") {
+		exec("mkdir " + rootPath + "/assets/javascripts/vendor/velocity/;cd " + nodePath + "/velocityjs;cake build;cp -R build/velocity/ " + rootPath + "/assets/javascripts/vendor/velocity/", function(error, stdout, stderr) {
+			console.log(error || "build velocity lib success!");
+		});
+	} else if (argType == "seajs") {
+		exec("mkdir " + rootPath + "/assets/javascripts/vendor/seajs/;cp -R " + nodePath + "/seajs/dist/ " + rootPath + "/assets/javascripts/vendor/seajs/", function(error, stdout, stderr) {
+			console.log(error || "build seajs lib success!");
+		});
+	} else if (argType == "backbone") {
+		exec("mkdir " + rootPath + "/assets/javascripts/vendor/backbone/;cp -R " + nodePath + "/backbone/backbone.js " + rootPath + "/assets/javascripts/vendor/backbone/backbone.js", function(error, stdout, stderr) {
+			console.log(error || "build backbone lib success!");
+		});
+	} else if (argType == "underscore") {
+		exec("mkdir " + rootPath + "/assets/javascripts/vendor/underscore/;cp -R " + nodePath + "/underscore/underscore.js " + rootPath + "/assets/javascripts/vendor/underscore/underscore.js", function(error, stdout, stderr) {
+			console.log(error || "build underscore lib success!");
+		});
+	} else if (argType == "all") {
+		exec([
+			rootPath + "/bin/cp velocity",
+			rootPath + "/bin/cp seajs",
+			rootPath + "/bin/cp backbone",
+			rootPath + "/bin/cp underscore"
+		].join(";"), function(error, stdout, stderr) {
+			console.log(error || "build all lib success!");
+		});
+	} else {
+		console.log("cp " + argType + " null!");
+	}
+} else {
+	console.log("cp null!");
+}

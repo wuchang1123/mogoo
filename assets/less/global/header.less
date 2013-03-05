@@ -1,0 +1,23 @@
+.navbar {
+	.brand {
+		@margin-space: (@navbarHeight - 26px) / 2;
+		.size(26px, 42px);
+		.hide-text();
+		margin: @margin-space 15px 0 @margin-space;
+		padding: 0;
+		background: url("@{bg-prefix}/global/logo.png");
+	}
+	.divider-vertical {
+		@navspace: 8px;
+		height: @navbarHeight - @navspace * 2;
+		margin-top: @navspace;
+	}
+	.nav-collapse {
+		.nav-more {
+			margin-left: -10px;
+		}
+	}
+	.navbar-search {
+		margin-left: 15px;
+	}
+}

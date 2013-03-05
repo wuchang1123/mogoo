@@ -1,4 +1,10 @@
 {
+	"view": {
+		"engine": "velocity",
+		"enginePath": "lib/views/velocity.js",
+		"tplPath": "assets/templates",
+		"layout": "main.vm"
+	},
     "db": {
         "USER": "gyUs2GsGpv0H",
         "PASS": "pCh4vbOMIv",

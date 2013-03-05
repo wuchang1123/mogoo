@@ -1,4 +1,4 @@
-#parse("web/iii.vm")
+#parse("iii.vm")
 
 #macro( tablerows $color $somelist )
   #foreach( $something in $somelist )

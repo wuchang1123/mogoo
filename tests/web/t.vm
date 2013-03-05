@@ -1,4 +1,4 @@
-#parse("web/macro.vm")
+#parse("macro.vm")
 #set( $greatlakes = ["Superior","Michigan","Huron","Erie","Ontario"] )
 #set( $color = "blue" )
 <table>

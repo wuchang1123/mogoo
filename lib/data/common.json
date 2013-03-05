@@ -1,0 +1,9 @@
+{
+	"title": "Mogoo App",
+	"commonjs": [
+		"/assets/js/common.js"
+	],
+	"commoncss": [
+		"/assets/css/global.css"
+	]
+}

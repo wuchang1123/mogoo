@@ -1,0 +1,30 @@
+<!doctype html>
+<!--[if IE 7 ]>		 <html class="no-js ie ie7 lte7 lte8 lte9" lang="zh"> <![endif]-->
+<!--[if IE 8 ]>		 <html class="no-js ie ie8 lte8 lte9" lang="zh"> <![endif]-->
+<!--[if IE 9 ]>		 <html class="no-js ie ie9 lte9>" lang="zh"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="zh"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>$title</title>
+#if($commoncss)#foreach($css in $commoncss)
+	<link rel="stylesheet" href="$css" />
+#end#end
+#if($commonjs)#foreach($js in $commonjs)
+	<script src="$js"></script>
+#end#end
+<!--[if lt IE 9]><script src="/assets/js/vendor/html5shiv/html5shiv.js"></script><![endif]-->
+</head>
+
+<body>
+#parse("../parts/header.vm")
+#parse("../parts/gui.vm")
+<div class="pager">
+<div class="container">
+$layoutContent
+</div>
+</div>
+#parse("../parts/backtotop.vm")
+#parse("../parts/feedback.vm")
+</body>
+</html>
