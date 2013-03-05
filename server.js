@@ -1,7 +1,16 @@
-var config     = require('config'),
-	express    = require('express'),
-	ENV        = process.env.NODE_ENV || 'development',
-	PORT       = config.port || 2000,
+var PORT,
+	config     = require('config'),
+	PENV       = process.env,
+	ENV        = PENV.NODE_ENV || 'development';
+
+if (PENV && PENV.HOME && /\/cnae\//.test(PENV.HOME)) {
+	PORT = 80;
+	config.db = config['db-nae'];
+} else {
+	PORT = config.port || 2000;
+}
+
+var express    = require('express'),
 	app        = express(),
 	http       = require('http'),
 	path       = require('path'),
@@ -12,6 +21,7 @@ var config     = require('config'),
 	global     = {};
 
 global.rootPath = __dirname;
+console.log(process.env);
 
 // Application setups
 app.configure('all', function () {
