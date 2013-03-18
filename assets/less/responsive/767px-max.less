@@ -1,17 +1,20 @@
 @media (max-width: 767px) {
 
-	body {
-		padding-top: 0;
-	}
-	
-	.thumbnail {
-		.photo {
-			display: block;
-			img {
-				width: auto;
-			}
+.header {
+	.navbar {
+		height: @header-height * 3 + 1;
+		&-nav {
+			clear: right;
 		}
-		//.f9c918
+		&-search,
+		&-member {
+			clear: both;
+			float: none;
+		}
+		&-search {
+			margin-top: 10px;
+		}
 	}
+}
 
 }

@@ -1,0 +1,15 @@
+<li class="span2">
+	<div class="thumbnail">
+		<span class="photo"><a href="$mo.get("link")"><img src="$mo.get("cover")" width="170" alt="$mo.get("title")"></a></span>
+		<div class="line">
+			<h5 class="title">$mo.get("title")</h5>
+			<span class="meta">[$mo.get("photoCount")张]</span>
+		</div>
+		<div class="author">
+			<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
+			<span class="data">
+				<a href="/users/1">$mo.get("user").get("nick")</a> 于2012年12月21日分享
+			</span>
+		</div>
+	</div>
+</li>

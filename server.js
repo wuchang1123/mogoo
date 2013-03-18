@@ -21,7 +21,7 @@ var express    = require('express'),
 	global     = {};
 
 global.rootPath = __dirname;
-console.log(process.env);
+//console.log(process.env);
 
 // Application setups
 app.configure('all', function () {

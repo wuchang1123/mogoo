@@ -1,0 +1,16 @@
+.inline-block() {
+	display: inline-block;
+	*display: inline; /* IE7 inline-block hack */
+	*zoom: 1;
+}
+
+.position-fixed(@right, @top) {
+	position: fixed;
+	right: @right;
+	top: @top;
+}
+
+.position-fixed(@right, @top, @bottom) {
+	.position-fixed(@right, @top);
+	bottom: @bottom;
+}

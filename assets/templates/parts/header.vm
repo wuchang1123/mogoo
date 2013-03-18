@@ -1,50 +1,23 @@
-<!--<header id="header">
-	<h1 class="site-logo"><a href="/" title="模宫">模宫</a></h1>
-	<ul class="site-nav">
-		<li><a href="/news">最新</a></li>
-		<li><a href="/hots">热门</a></li>
-	</ul>
-	<form class="site-search">
-		<input class="key" type="search" name="key" />
-		<button class="submit" type="submit" value="搜索">
-			<span class="icon-search"></span>
-		</button>
-	</form>
-	<ul class="site-person">
-		<li><a href="/login">登录</a></li>
-		<li><a href="/register">注册</a></li>
-	</ul>
-</header>-->
-<div id="header" class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
-			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="brand" href="/">模宫</a>
-			<ul class="nav">
-				<li class="divider-vertical"></li>
-				<li><a href="/news">最新</a></li><!-- class="active" -->
-				<li class="divider-vertical"></li>
+<header id="header" class="header">
+	<nav class="navbar">
+		<div class="navbar-content">
+			<h1 class="navbar-logo"><a class="icon-logo" href="/" title="模宫">模宫</a></h1>
+			<ul class="navbar-nav">
+				<li><a href="/news">最新</a></li>
 				<li><a href="/hots">热门</a></li>
 			</ul>
-			<div class="nav-collapse collapse">
-				<ul class="nav nav-more">
-					<li class="divider-vertical"></li>
-					<li><a href="/index.html">响应式隐藏</a></li>
-				</ul>
-				<form class="navbar-search pull-right">
-					<input type="text" class="search-query" placeholder="输入型号、或者关键字">
-				</form>
-				<ul class="nav pull-right">
-					<li><a href="/login">登录</a></li>
-					<li class="divider-vertical"></li>
-					<li><a href="/register">注册</a></li>
-					<li class="divider-vertical"></li>
-				</ul>
-			</div>
+			<form class="navbar-search">
+				<input class="key" type="text" name="key" />
+				<button class="submit" type="submit">
+					<span class="icon-search"></span>
+					<span class="text">搜索<span>
+				</button>
+			</form>
+			<ul class="navbar-member">
+				<li><a href="/login">登录</a></li>
+				<li><a href="/register">注册</a></li>
+			</ul>
 		</div>
-	</div>
-</div>
+	</nav>
+	#parse("../parts/gui.vm")
+</header>

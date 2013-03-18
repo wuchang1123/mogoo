@@ -19,7 +19,8 @@
 				"vendor/underscore/underscore.js",
 				"vendor/backbone/backbone.js",
 				"vendor/velocity/index.js",
-				"global/*"
+				"global/*",
+				"modules/*"
 			]
 		},
 		"css": {
