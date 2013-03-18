@@ -1,127 +1,25 @@
 #set($test=0)
 #set($layout="main")
 
-<section>
-#if($molist)#foreach($mo in $molist)
-#parse("../modules/mo-index.vm")
-  index => $foreach.index $mo
-  count => $foreach.count
-  #if (!$foreach.hasNext) end #end
-#end#end
-	<div class="row">
-		<div class="span12">
-			<ul class="thumbnails">
-				
-				<li class="span2">
-					<div class="thumbnail">
-						<span class="photo"><a href="/mos/1"><img src="http://photo2.idate.163.com/album/29/73/1/33bbe9064fb17bbed74eda6c90dda2f5/16740173//lit/PORTRAIT_CERT" width="170" alt=""></a></span>
-						<div class="line">
-							<h5 class="title">缩略项标签</h5>
-							<span class="meta">[12张]</span>
-						</div>
-						<div class="author">
-							<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
-							<span class="data">
-								<a href="/users/1">昵称</a> 于2012年12月21日分享
-							</span>
-						</div>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<span class="photo"><a href="/mos/1"><img src="http://photo2.idate.163.com/album/29/73/1/33bbe9064fb17bbed74eda6c90dda2f5/16740173//lit/PORTRAIT_CERT" width="170" alt=""></a></span>
-						<div class="line">
-							<h5 class="title">缩略项标签</h5>
-							<span class="meta">[12张]</span>
-						</div>
-						<div class="author">
-							<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
-							<span class="data">
-								<a href="/users/1">昵称</a> 于2012年12月21日分享
-							</span>
-						</div>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<span class="photo"><a href="/mos/1"><img src="http://photo2.idate.163.com/album/29/73/1/33bbe9064fb17bbed74eda6c90dda2f5/16740173//lit/PORTRAIT_CERT" width="170" alt=""></a></span>
-						<div class="line">
-							<h5 class="title">缩略项标签</h5>
-							<span class="meta">[12张]</span>
-						</div>
-						<div class="author">
-							<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
-							<span class="data">
-								<a href="/users/1">昵称</a> 于2012年12月21日分享
-							</span>
-						</div>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<span class="photo"><a href="/mos/1"><img src="http://photo2.idate.163.com/album/29/73/1/33bbe9064fb17bbed74eda6c90dda2f5/16740173//lit/PORTRAIT_CERT" width="170" alt=""></a></span>
-						<div class="line">
-							<h5 class="title">缩略项标签</h5>
-							<span class="meta">[12张]</span>
-						</div>
-						<div class="author">
-							<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
-							<span class="data">
-								<a href="/users/1">昵称</a> 于2012年12月21日分享
-							</span>
-						</div>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<span class="photo"><a href="/mos/1"><img src="http://photo2.idate.163.com/album/29/73/1/33bbe9064fb17bbed74eda6c90dda2f5/16740173//lit/PORTRAIT_CERT" width="170" alt=""></a></span>
-						<div class="line">
-							<h5 class="title">缩略项标签</h5>
-							<span class="meta">[12张]</span>
-						</div>
-						<div class="author">
-							<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
-							<span class="data">
-								<a href="/users/1">昵称</a> 于2012年12月21日分享
-							</span>
-						</div>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<span class="photo"><a href="/mos/1"><img src="http://photo2.idate.163.com/album/29/73/1/33bbe9064fb17bbed74eda6c90dda2f5/16740173//lit/PORTRAIT_CERT" width="170" alt=""></a></span>
-						<div class="line">
-							<h5 class="title">缩略项标签</h5>
-							<span class="meta">[12张]</span>
-						</div>
-						<div class="author">
-							<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
-							<span class="data">
-								<a href="/users/1">昵称</a> 于2012年12月21日分享
-							</span>
-						</div>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<span class="photo"><a href="/mos/1"><img src="http://photo2.idate.163.com/album/29/73/1/33bbe9064fb17bbed74eda6c90dda2f5/16740173//lit/PORTRAIT_CERT" width="170" alt=""></a></span>
-						<div class="line">
-							<h5 class="title">缩略项标签</h5>
-							<span class="meta">[12张]</span>
-						</div>
-						<div class="author">
-							<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
-							<span class="data">
-								<a href="/users/1">昵称</a> 于2012年12月21日分享
-							</span>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+<section class="mo-index">
+	<div class="mo-wrap" id="index-mos">		
+		<ul class="molist">
+		#if($molist)
+		#set($invisible=true)
+		#foreach($mo in $molist)
+		#parse("../modules/mo-index.vm")
+		#end
+		#set($invisible=false)
+		#end
+		</ul>
+		<span class="loading"></span>
 	</div>
 </section>
 
 <script>
+$(function() {
+	var $wrap = $("#index-mos");
+	
+});
 console.log(_);
 </script>

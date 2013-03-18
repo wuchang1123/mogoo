@@ -1,0 +1,45 @@
+.mo {
+	&-wrap {
+		padding: 15px 0;
+	}
+	&-index {
+		margin: 0 auto;
+		// 默认四列
+		width: 993px;
+	}
+}
+
+@media (min-width: 1245px) {
+	.mo {
+		&-index {
+			width: 1245px;
+		}
+	}
+}
+
+// 三列
+@media (min-width: 741px) and (max-width: 992px) {
+	.mo {
+		&-index {
+			width: 742px;
+		}
+	}
+}
+
+// 二列
+@media (min-width: 489px) and (max-width: 740px) {
+	.mo {
+		&-index {
+			width: 489px;
+		}
+	}
+}
+
+// 一列
+@media (max-width: 488px) {
+	.mo {
+		&-index {
+			width: 237px;
+		}
+	}
+}

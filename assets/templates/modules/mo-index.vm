@@ -1,14 +1,18 @@
-<li class="span2">
-	<div class="thumbnail">
-		<span class="photo"><a href="$mo.get("link")"><img src="$mo.get("cover")" width="170" alt="$mo.get("title")"></a></span>
-		<div class="line">
-			<h5 class="title">$mo.get("title")</h5>
+<li class="moblock#if($invisible) invisible#end">
+	<div class="mowrap">
+		<div class="photo"><a href="$mo.get("link")"><img src="$mo.get("cover")" width="225" alt="$mo.get("title")"></a></div>
+		<div class="title-line">
+			<h5 class="title"><a href="$mo.get("link")">$mo.get("title")</a></h5>
 			<span class="meta">[$mo.get("photoCount")张]</span>
 		</div>
+		<div class="shop">
+			<a href="$mo.get("shop").get("link")"><span class="icon-shop-$mo.get("shop").get("en")"></span> $mo.get("shop").get("price")元</a>
+		</div>
 		<div class="author">
-			<span class="avator"><img src="http://tp2.sinaimg.cn/1773416981/50/5657181123/0" /></span>
+			<span class="avator"><a href="$mo.get("user").get("link")"><img src="$mo.get("user").get("avatar")" width="30" height="30" /></a></span>
 			<span class="data">
-				<a href="/users/1">$mo.get("user").get("nick")</a> 于2012年12月21日分享
+				<a href="$mo.get("user").get("link")">$mo.get("user").get("nick")</a><br />
+				#ParseTime($mo.get("createTime"), "yy年MM月dd日 HH:mm")分享
 			</span>
 		</div>
 	</div>

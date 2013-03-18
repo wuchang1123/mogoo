@@ -1,0 +1,88 @@
+.moblock {
+	@mo-space: 5px;
+	@mo-radius: 18px;
+	@line-space: 14px;
+	float: left;
+	.inline-block();
+	padding-left: @mo-space;
+	padding-right: @mo-space;
+	background: #fff;
+	border: 1px solid #ababaa;
+	.border-top-radius(@mo-radius);
+	font-size: @fontSizeSmall;
+	line-height: 21px;
+	.photo {
+		display: block;
+		margin-top: @mo-space;
+		text-align: center;
+		img {
+			float: left;
+			.border-top-radius(@mo-radius);
+		}
+	}
+	.title-line {
+		clear: both;
+		position: relative;
+		padding: 2px @line-space;
+		background: #666;
+		.title,
+		.title a,
+		.title a:visited,
+		.meta {
+			color: #f8f8f8;
+		}
+		.title a {
+			position: relative;
+			z-index: 1;
+			display: block;
+			padding-right: @fontSizeSmall * 4;
+		}
+		.title {
+		}
+		.meta {
+			position: absolute;
+			right: @line-space;
+			top: 2px;
+			width: @fontSizeSmall * 4;
+			text-align: right;
+		}
+	}
+	.shop,
+	.author {
+		padding: 2px @line-space;
+	}
+	.shop {
+		padding-top: 8px;
+		a,
+		a:visited {
+			color: @grayDarker;
+		}
+		span {
+			margin-top: 1px;
+			vertical-align: top;
+		}
+	}
+	.author {
+		margin-bottom: @mo-space + 5px;
+		color: #adadad;
+		.avator,
+		.data {
+			display: block;
+			line-height: 15px;
+		}
+		.avator {
+			height: 30px;
+			overflow: hidden;
+			img {
+				.border-radius(3px);
+			}
+		}
+		.data {
+			margin: -30px 0 0 50px;
+			a,
+			a:visited {
+				color: #f9ca1f;
+			}
+		}
+	}
+}

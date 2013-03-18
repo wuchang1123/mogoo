@@ -11,6 +11,9 @@ $layoutConfig
 #if($commoncss)#foreach($css in $commoncss)
 	<link rel="stylesheet" href="$css" />
 #end#end
+#if($pagecss)#foreach($css in $pagecss)
+	<link rel="stylesheet" href="$css" />
+#end#end
 #if($commonjs)#foreach($js in $commonjs)
 	<script src="$js"></script>
 #end#end
@@ -26,5 +29,8 @@ $layoutContent
 </div>
 #parse("../parts/backtotop.vm")
 #parse("../parts/feedback.vm")
+#if($pagejs)#foreach($js in $pagejs)
+	<script src="$js"></script>
+#end#end
 </body>
 </html>
