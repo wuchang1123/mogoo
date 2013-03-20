@@ -105,7 +105,7 @@
 				this._maxHeight = 0;
 			}
 			
-			var listWidth = list.width(),
+			var listWidth = wrap.width(),
 				blockWidth;
 			
 			blockWidth = host._blockWidth || host._getBlockWidth(blocks.eq(0));
