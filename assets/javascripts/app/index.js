@@ -8,10 +8,7 @@ $(function() {
 		
 	});
 	moList.toload = function(cb) {
-		console.log("toload", arguments);
-		//return;
 		MG.renderTemplate("parts/index/molist-news", jsonPath.join("&"), function(html, data) {
-			//console.log(data);
 			var list = data && data.json.molist;
 			if (list) {
 				var mo = _.last(list);

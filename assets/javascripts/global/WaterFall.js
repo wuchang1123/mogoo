@@ -83,7 +83,6 @@
 			return index;
 		},
 		adjust: function(isAdd) {
-			console.log("adjust");
 			var host = this,
 				isAll = isAdd === udf,
 				wrap = host._wrap,
