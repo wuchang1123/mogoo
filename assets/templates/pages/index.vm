@@ -9,7 +9,3 @@
 		<span class="js-loading molist-loading"><span class="icon-loading-32"></span> 正在加载……</span>
 	</div>
 </section>
-
-<script>
-console.log(_);
-</script>

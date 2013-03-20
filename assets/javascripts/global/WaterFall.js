@@ -44,7 +44,7 @@
 		_toload: function() {
 			var host = this;
 			this._inloading = true;
-			console.log("toload");
+			//console.log("toload");
 			this.toload && this.toload(function(str) {
 				var waters = $(str);
 				waters.length && host.add(waters);
