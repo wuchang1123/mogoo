@@ -1,0 +1,7 @@
+#if($molist)
+#set($invisible=true)
+#foreach($mo in $molist)
+#parse("../../modules/mo-news.vm")
+#end
+#set($invisible=false)
+#end

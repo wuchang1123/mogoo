@@ -78,7 +78,7 @@ app.configure('production', function() {
 //require('./models/User')(mongoose);
 
 // Register Controllers
-['site', 'assets'].forEach(function (controller) {
+['site', 'assets', 'json'].forEach(function (controller) {
     require('./lib/controllers/' + controller)(global, app, mongoose, config);
 });
 

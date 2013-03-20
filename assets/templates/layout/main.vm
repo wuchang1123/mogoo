@@ -17,7 +17,7 @@ $layoutConfig
 #if($commonjs)#foreach($js in $commonjs)
 	<script src="$js"></script>
 #end#end
-<!--[if lt IE 9]><!--> <script src="/assets/js/vendor/html5shiv/html5shiv.js"></script> <![endif]-->
+<!--[if lt IE 9]><script src="/assets/js/vendor/html5shiv/html5shiv.js"></script><![endif]-->
 </head>
 
 <body>

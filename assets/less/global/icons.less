@@ -1,4 +1,5 @@
 @import "../icons/shop.less";
+@import "../icons/loading.less";
 
 .icon {
 	&-logo {
@@ -13,10 +14,12 @@
 	
 }
 
-.icon-search {
+.icon-search,
+.icon-feeback {
 	.hide-text();
 	.inline-block();
-	background: url("@{bg-prefix}/global/icons.png") no-repeat 0 0;
+	.size(16px, 16px);
+	background: @url-global-icons no-repeat 0 0;
 }
 
 
@@ -25,11 +28,13 @@
 }
 
 .icon-search {
-	.size(16px, 16px);
 	background-position: -18px -84px;
 	&:hover {
 		.icon-search-hover();
 	}
+}
+.icon-feeback {
+	background-position: -36px -84px;
 }
 
 .make-icon-mos(@is-hover) {
@@ -48,7 +53,7 @@
 		&-6 {
 			.inline-block();
 			.size(40px, 40px);
-			background: url("@{bg-prefix}/global/icons.png") no-repeat 0 0;
+			background: @url-global-icons no-repeat 0 0;
 		}
 		&-2 {
 			.make-pos(2, 1);

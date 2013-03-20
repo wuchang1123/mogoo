@@ -1,11 +1,12 @@
-
-//#backToTop {
-//	.position-fixed(0, auto, 0);
-//	.hide-text();
-//	background: url("@{bg-prefix}/global/backtotop.png") no-repeat 0 0;
-//	&,
-//	& a {
-//		display: block;
-//		.size(50px, 50px);
-//	}
-//}
+#backToTop {
+	.fpos-rb(0, 0);
+	_position: absolute;
+	z-index: @zindexFixedNavbar;
+	.hide-text();
+	background: url("@{bg-prefix}/global/backtotop.png") no-repeat 0 0;
+	&,
+	& a {
+		display: block;
+		.size(50px, 50px);
+	}
+}

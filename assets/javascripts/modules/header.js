@@ -1,7 +1,6 @@
 $(function() {
 	var tid,
 		ewin = $(window),
-		ebody = $("body"),
 		eheader = $("#header"),
 		enav = $(".navbar", eheader),
 		egui = $("#header-guibar"),
@@ -43,7 +42,7 @@ $(function() {
 	}
 	
 	eheader && ewin.scroll(doScroll);
-	ehandle && ehandle.click(function(e) {
+	ehandle && $("a", ehandle).click(function(e) {
 		var sTop = ewin.scrollTop();
 		e.preventDefault();
 		if (state === "normal") {

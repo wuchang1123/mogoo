@@ -1,22 +1,4 @@
 {
-	"assets": {
-		"js": {
-			"common": [
-				"vendor/jquery/jquery-1.9.1.js",
-				"MG.js",
-				"vendor/underscore/underscore.js",
-				"vendor/backbone/backbone.js",
-				"vendor/velocity/index.js",
-				"global/*",
-				"modules/*"
-			]
-		},
-		"css": {
-			"common": [
-				
-			]
-		}
-	},
 	"view": {
 		"engine": "velocity",
 		"enginePath": "lib/views/velocity.js",

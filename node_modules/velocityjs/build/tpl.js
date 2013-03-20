@@ -11,15 +11,19 @@
   var guid = 0;
   //api map
   var utils = {
-    forEach : _.each,
+    forEach : function(data, cb, host) {
+    	data && data.length && _.each(data, function(d, index) {
+		    cb.apply(host, arguments);
+		});
+    },
     some    : _.some,
-    mixin   : _.mixin,
+    mixin   : jQuery.extend,
     guid    : function() {
     	guid++;
 	    return "velocity-1111-2222" + guid;
     },
-    isArray : _.isArray,
-    indexOf : _.indexOf,
+    isArray : jQuery.isArray,
+    indexOf : jQuery.inArray,
     // 1.2没有keys方法，考虑独立utils
     keys    : _.keys,
     now     : jQuery.now

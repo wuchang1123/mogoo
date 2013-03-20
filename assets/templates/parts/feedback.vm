@@ -1,3 +1,3 @@
 <div id="feedback">
-	<a href="/feedback">意见反馈</a>
+	<a href="/feedback"><span class="icon-feeback"></span>意见反馈</a>
 </div>

@@ -53,9 +53,12 @@
 		&-member li {
 			margin-top: (@header-height - @header-nav-height) / 2;
 			.inline-block();
-			padding: 0 15px;
 			line-height: @header-nav-height;
 			border-left: 1px solid #fcdc00;
+			a {
+				.inline-block();
+				padding: 0 15px;
+			}
 		}
 		&-member {
 			overflow: hidden;

@@ -3,23 +3,13 @@
 
 <section class="mo-index">
 	<div class="mo-wrap" id="index-mos">		
-		<ul class="molist">
-		#if($molist)
-		#set($invisible=true)
-		#foreach($mo in $molist)
-		#parse("../modules/mo-index.vm")
-		#end
-		#set($invisible=false)
-		#end
+		<ul class="js-list molist">
+		#parse("../parts/index/molist-news.vm")
 		</ul>
-		<span class="loading"></span>
+		<span class="js-loading molist-loading"><span class="icon-loading-32"></span> 正在加载……</span>
 	</div>
 </section>
 
 <script>
-$(function() {
-	var $wrap = $("#index-mos");
-	
-});
 console.log(_);
 </script>
