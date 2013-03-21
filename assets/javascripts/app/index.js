@@ -3,7 +3,7 @@ $(function() {
 	var $wrap = $("#index-mos"),
 		jsonPath = ["/api/mos/news.json?ajax=1", "start=", "limit=10"],
 		moList;
-		
+	
 	moList = new MG.WaterFall($wrap, {
 		
 	});
@@ -18,6 +18,6 @@ $(function() {
 				cb && cb(html);
 			//}, 20000)
 		});
-	}
+	};
 	
 });

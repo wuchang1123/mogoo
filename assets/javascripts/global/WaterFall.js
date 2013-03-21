@@ -10,7 +10,7 @@
 		this._runId = 0;
 		this._offset = {};
 		this._instop = false;
-		this._inloading = false;
+		this._inloading = true;
 		//console.log(wrap, this._list, this._loading);
 		
 		this._init(option);
@@ -48,7 +48,6 @@
 			this.toload && this.toload(function(str) {
 				var waters = $(str);
 				waters.length && host.add(waters);
-				host._inloading = false;
 			});
 		},
 		_getBlockWidth: function(fblock) {
@@ -118,6 +117,7 @@
 				// 调整位置主要函数
 				oneCompleted = function(block) {
 					// 运行的 id 已经超时
+					block.hasClass("invisible") && block.removeClass("invisible");
 					if (host._runId !== runId) {
 						return;
 					}
@@ -125,6 +125,7 @@
 					if (tmpIndex < blockLen) {
 						run(++tmpIndex);
 					} else {
+						host._inloading = false;
 						host._nowIndex = blockLen;
 					}
 					(tmpIndex % 4 === 0 || tmpIndex >= blockLen) && list.css("height", host._maxHeight);
