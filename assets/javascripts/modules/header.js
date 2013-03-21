@@ -5,6 +5,7 @@ $(function() {
 		enav = $(".navbar", eheader),
 		egui = $("#header-guibar"),
 		eguiNav = $(".guibar-collapse", egui),
+		eIconsNews = $(".icon-news", enav),
 		headerHeight = eheader.height(),
 		guiNavHeight = eguiNav.height(),
 		ehandle = egui && $(".guibar-handle", egui),
@@ -12,6 +13,11 @@ $(function() {
 		isCollapse = 0;
 	
 	var point = guiNavHeight;
+	
+	ewin.on("resize", function() {
+		guiNavHeight = eguiNav.height();
+		point === 1 && (point = guiNavHeight);
+	});
 	
 	function stateNormal() {
 		if (eheader.hasClass("header-gui-fixed-close")) {
@@ -69,4 +75,33 @@ $(function() {
 			window.scrollTo(ewin.scrollLeft(), sTop - ptop + parseInt(eheader.css("padding-top")));
 		}
 	});
+	
+	if (eIconsNews) {
+		var durationTime = 120,
+			timeMax = 1000,
+			timeMin = 100,
+			timeSpace = timeMin;
+		var op1 = function() {
+			eIconsNews.animate({opacity: 1}, durationTime, function() {
+				timeSpace = timeSpace === timeMax ? timeMin : timeMax;
+				setTimeout(op0, timeSpace);
+			});
+		};
+		var op0 = function() {
+			eIconsNews.animate({opacity: 0}, durationTime, function() {
+				setTimeout(op1, timeMin);
+			});
+		};
+		var getUnRead = function() {
+			jQuery.getJSON("/api/mos/news-unread.json", function(data) {
+				if (data && data.total) {
+					eIconsNews.removeClass("invisible");
+					op0();
+				} else {
+					getUnRead();
+				}
+			});
+		};
+		setTimeout(getUnRead, 2000);
+	}
 });

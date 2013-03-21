@@ -1,0 +1,32 @@
+.icon-search-hover() {
+	background-position: 0 -84px;
+}
+
+.icon {
+	&-news,
+	&-search,
+	&-feeback {
+		.hide-text();
+		.inline-block();
+		background: @url-global-icons no-repeat 0 0;
+	}
+	
+	/* 16x16*/
+	&-search,
+	&-feeback,
+	&-news {
+		.size(16px, 16px);
+	}
+	&-search {
+		background-position: -18px -84px;
+		&:hover {
+			.icon-search-hover();
+		}
+	}
+	&-feeback {
+		background-position: -36px -84px;
+	}
+	&-news {
+		background-position: -54px -84px;
+	}
+}

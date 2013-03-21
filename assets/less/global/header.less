@@ -1,12 +1,12 @@
+@header-outter-height: @header-height + 1;
+@gui-bar-height: @header-gui-height;
+@gui-bar-width: 940px;
+@gui-collapse-height: 138px;
+@gui-handle-bar-height: 20px;
+@gui-handle-width: 100px;
+@gui-handle-height: 30px;
+@header-search-height: 26px;
 .header {
-	@header-outter-height: @header-height + 1;
-	@gui-bar-height: @header-gui-height;
-	@gui-bar-width: 940px;
-	@gui-collapse-height: 138px;
-	@gui-handle-bar-height: 20px;
-	@gui-handle-width: 100px;
-	@gui-handle-height: 30px;
-	@search-height: 26px;
 	width: 100%;
 	padding-top: @header-outter-height;
 	.navbar {
@@ -58,6 +58,12 @@
 			a {
 				.inline-block();
 				padding: 0 15px;
+				position: relative;
+			}
+			.icon-news {
+				position: absolute;
+				right: 5px;
+				top: -2px;
 			}
 		}
 		&-member {
@@ -68,9 +74,9 @@
 			}
 		}
 		&-search {
-			margin: (@header-height - @search-height) / 2 10px 0;
+			margin: (@header-height - @header-search-height) / 2 10px 0;
 			width: 160px;
-			height: @search-height;
+			height: @header-search-height;
 			overflow: hidden;
 			background: #fff;
 			.border-radius(18px);
@@ -91,7 +97,7 @@
 				-webkit-appearance: textfield;
 				background: transparent;
 				width: 122px;
-				height: @search-height;
+				height: @header-search-height;
 				border: 0;
 				outline: none;
 			}
@@ -203,6 +209,16 @@
 				.transition(margin-top 0.5s ease-in);
 			}
 		}
+		
+		&-fixed,
+		&-fixed-close,
+		&-close {
+			.guibar {
+				&-handle a {
+					background-position: right 0;
+				}
+			}
+		}
 	}
 	&-gui {
 		&-fixed {
@@ -238,5 +254,75 @@
 			}
 		}
 	}
+
+}
+
+// 二列
+@media (min-width: 780px) and (max-width: 970px) {
+	@gui-bar-width-responsive: 650px;
+	@gui-bar-height-responsive: 250px;
+	@gui-collapse-height-responsive: @gui-bar-height-responsive - (@gui-bar-height - @gui-collapse-height);
+	.header {
+		.guibar {
+			.size(@gui-bar-width-responsive, @gui-bar-height-responsive);
+			&-collapse {
+				height: @gui-collapse-height-responsive;
+			}
+		}
+		&-gui {
+			&-fixed {
+				padding-top: @header-outter-height + @gui-collapse-height-responsive + @gui-handle-bar-height + @gui-handle-height + 1;
+				.guibar {
+					margin-left: -(@gui-bar-width-responsive / 2);
+					margin-top: 0 - @gui-collapse-height-responsive - 1;
+				}
+				&-open {
+					.guibar {
+						margin-top: 0;
+					}
+				}
+				&-close {
+					padding-top: @header-outter-height + @gui-handle-bar-height + @gui-handle-height + 1;
+					.guibar {
+						margin-top: 0 - @gui-collapse-height-responsive - 1;
+					}
+				}
+			}
+			&-open {
+				.guibar {
+					margin-top: 0;
+				}
+			}
+			&-close {
+				.guibar {
+					margin-top: 0 - @gui-collapse-height-responsive - 1;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 779px) {
+
+.header {
+	.navbar {
+		height: @header-height * 3 + 1;
+		&-content {
+			height: @header-height * 3;
+		}
+		&-nav {
+			clear: right;
+			margin-bottom: 15px;
+		}
+		&-search,
+		&-member {
+			clear: both;
+			float: none;
+		}
+		&-search {
+			margin-bottom: 10px;
+		}
+	}
+}
 
 }

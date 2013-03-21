@@ -3,7 +3,7 @@
 		<div class="navbar-content">
 			<h1 class="navbar-logo"><a class="icon-logo" href="/" title="模宫">模宫</a></h1>
 			<ul class="navbar-nav">
-				<li><a href="/news">最新</a></li>
+				<li><a href="/news">最新<span class="icon-news invisible"></span></a></li>
 				<li><a href="/hots">热门</a></li>
 			</ul>
 			<form class="navbar-search">
