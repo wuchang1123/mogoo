@@ -105,13 +105,14 @@
 				this._maxHeight = 0;
 			}
 			
-			var listWidth = wrap.width(),
+			var listWidth = list.width(),
 				blockWidth;
 			
 			blockWidth = host._blockWidth || host._getBlockWidth(blocks.eq(0));
 			
 			this._colCount = this._colCount || parseInt(listWidth / blockWidth);
 			//console.log("this._nowIndex",this._nowIndex);
+			//alert([listWidth, this._colCount, blockWidth].join("--"));
 			
 			(function(runId) {
 				// 调整位置主要函数
