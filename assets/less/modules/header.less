@@ -219,6 +219,15 @@
 				}
 			}
 		}
+		
+		&-fixed-open,
+		&-open {
+			.guibar {
+				&-handle a {
+					background-position: 0 0;
+				}
+			}
+		}
 	}
 	&-gui {
 		&-fixed {
@@ -257,10 +266,10 @@
 
 }
 
-// 二列
-@media (min-width: 780px) and (max-width: 970px) {
-	@gui-bar-width-responsive: 650px;
-	@gui-bar-height-responsive: 250px;
+.gui-bar-responsive(@width, @height) {
+	
+	@gui-bar-width-responsive: @width;
+	@gui-bar-height-responsive: @height;
 	@gui-collapse-height-responsive: @gui-bar-height-responsive - (@gui-bar-height - @gui-collapse-height);
 	.header {
 		.guibar {
@@ -302,27 +311,73 @@
 	}
 }
 
-@media (max-width: 779px) {
+// 二列
+@media (min-width: 780px) and (max-width: 970px) {
+	.gui-bar-responsive(650px, 250px);
+}
 
-.header {
-	.navbar {
-		height: @header-height * 3 + 1;
-		&-content {
-			height: @header-height * 3;
+@media (max-width: 779px) {
+	
+	@gui-bar-width-responsive: 378px;
+	@gui-bar-height-responsive: 430px;
+	@gui-collapse-height-responsive: @gui-bar-height-responsive - (@gui-bar-height - @gui-collapse-height);
+	@header-outter-height: @header-height * 3 + 1;
+	.header {
+		padding-top: @header-outter-height;
+		.navbar {
+			height: @header-outter-height;
+			&-content {
+				height: @header-height * 3;
+			}
+			&-nav {
+				clear: right;
+				margin-bottom: 15px;
+			}
+			&-search,
+			&-member {
+				clear: both;
+				float: none;
+			}
+			&-search {
+				margin-bottom: 10px;
+			}
 		}
-		&-nav {
-			clear: right;
-			margin-bottom: 15px;
+		.guibar {
+			.size(@gui-bar-width-responsive, @gui-bar-height-responsive);
+			&-collapse {
+				height: @gui-collapse-height-responsive;
+			}
 		}
-		&-search,
-		&-member {
-			clear: both;
-			float: none;
-		}
-		&-search {
-			margin-bottom: 10px;
+		&-gui {
+			&-fixed {
+				padding-top: @header-outter-height + @gui-collapse-height-responsive + @gui-handle-bar-height + @gui-handle-height + 1;
+				.guibar {
+					margin-left: -(@gui-bar-width-responsive / 2);
+					margin-top: 0 - @gui-collapse-height-responsive + @header-height * 2 - 1;
+				}
+				&-open {
+					.guibar {
+						margin-top: 0;
+					}
+				}
+				&-close {
+					padding-top: @header-outter-height + @gui-handle-bar-height + @gui-handle-height + 1;
+					.guibar {
+						margin-top: 0 - @gui-collapse-height-responsive + @header-height * 2 - 1;
+					}
+				}
+			}
+			&-open {
+				.guibar {
+					margin-top: 0;
+				}
+			}
+			&-close {
+				.guibar {
+					margin-top: 0 - @gui-collapse-height-responsive + @header-height * 2 - 1;
+				}
+			}
 		}
 	}
-}
 
 }

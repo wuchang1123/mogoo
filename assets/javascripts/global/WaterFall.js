@@ -1,5 +1,22 @@
 (function(win, udf) {
 	var $window = $(win);
+	
+	function onEachImageLoad(imgs, runFn, callback) {
+		imgs.each(function(index, img) {
+			if ((img.loaded || img.complete) && !/blank\.gif$/.test(img.src)) {
+				callback(img);
+			} else {
+				img.onload = function() {
+					this.onload = null;
+					this.loaded = true;
+					callback(img);
+				};
+			}
+			runFn && runFn(img);
+		});
+	}
+	
+	
 	function WaterFall(wrap, option) {
 		if (wrap) {
 			this._wrap = wrap;
@@ -9,6 +26,7 @@
 		}
 		this._runId = 0;
 		this._offset = {};
+		this._lastOffset = {};
 		this._instop = false;
 		this._inloading = true;
 		//console.log(wrap, this._list, this._loading);
@@ -56,17 +74,22 @@
 		_getBlockHeight: function(fblock) {
 			return fblock.outerHeight() + parseInt(fblock.css("margin-top") || 0) + parseInt(fblock.css("margin-bottom") || 0);
 		},
-		_setBlockPosition: function(fblock) {
+		_setBlockPosition: function(fblock, isNoEnd) {
 			var index = this._minCol,
 				heights = this._heights,
 				colLen = this._colCount || 0,
 				tmpHeight,
 				maxHeight = 0,
 				indexHeight = heights[index] || 0;
-			fblock.css({
+			var newOffset = {
 				left: index * this._blockWidth + "px",
 				top: indexHeight + "px"
-			});
+			};
+			(!isNoEnd || this._lastOffset == udf) && (this._lastOffset = newOffset);
+			//this._lastOffset && fblock.css(this._lastOffset);
+			//console.log(isNoEnd, this._lastOffset);
+			fblock.hasClass("invisible") && fblock.removeClass("invisible");
+			fblock.css(newOffset);
 			indexHeight = this._heights[index] = indexHeight + this._getBlockHeight(fblock);
 			for(var i = 0; i < colLen; i++) {
 				tmpHeight = heights[i] || 0;
@@ -117,11 +140,10 @@
 				// 调整位置主要函数
 				oneCompleted = function(block) {
 					// 运行的 id 已经超时
-					block.hasClass("invisible") && block.removeClass("invisible");
 					if (host._runId !== runId) {
 						return;
 					}
-					host._setBlockPosition(block);
+					host._setBlockPosition(block, tmpIndex < blockLen);
 					if (tmpIndex < blockLen) {
 						run(++tmpIndex);
 					} else {
@@ -141,38 +163,34 @@
 				if (index < host._nowIndex) return;
 				block = block && $(block);
 				if (block) {
-					if (1 == block.attr("data-binded-load")) {
+					if (block.attr("data-binded-load")) {
 						oneCompleted(block);
 					} else {
 						var imgs = $("img.js-cover", block),
 							imgLen = imgs && imgs.length,
 							imgCount = 0;
 						if (imgLen) {
-							imgs.each(function(index, img) {
-								var called = false, tid;
-								var ready = function() {
-									tid && clearTimeout(tid);
-									if (called) return;
-									called = true;
-									imgCount++;
-									block.attr("data-binded-load", 1);
-									imgsCompleted(block, imgLen, imgCount);
-								};
-								// 图片缓存
-								if (img.complete || /(complete|loaded)/.test(img.readyState)) {
-									ready();
-								// 监视图片加载
-								} else {
-									img && (img.onreadystatechange = ready) &&
-											$(img).load(ready).attr("src", img.src);
-								}
-								// 超时
-								tid = setTimeout(function() {
-									if (called) return;
-									img.style.height = "100px";
-									ready();
-								}, 20000);
-							});
+							var called = false, tid;
+							var ready = function(img) {
+								tid && clearTimeout(tid);
+								if (called) return;
+								called = true;
+								img && imgCount++;
+								//console.log("ready",called, img, imgLen, imgCount);
+								block.attr("data-binded-load", 1);
+								imgsCompleted(block, imgLen, imgCount);
+							};
+							onEachImageLoad(imgs, function(img) {
+								var eimg = $(img);
+								eimg.attr("src", eimg.attr("data-src") || img.src);
+							}, ready);
+							// 超时
+							tid = setTimeout(function() {
+								if (called) return;
+								imgs.css("height", "180px");
+								imgCount = imgLen;
+								ready();
+							}, 3000 * imgLen);
 						} else {
 							oneCompleted(block);
 							block.attr("data-binded-load", 1);

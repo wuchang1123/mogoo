@@ -19,5 +19,5 @@
 			</ul>
 		</div>
 	</nav>
-	#parse("../parts/gui.vm")
+	#if($showHeaderGui)#parse("./gui.vm")#end
 </header>

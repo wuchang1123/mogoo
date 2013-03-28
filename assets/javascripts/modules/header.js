@@ -4,17 +4,19 @@ $(function() {
 		eheader = $("#header"),
 		enav = $(".navbar", eheader),
 		egui = $("#header-guibar"),
-		eguiNav = $(".guibar-collapse", egui),
-		eIconsNews = $(".icon-news", enav),
+		eguiNav = egui && egui.length && $(".guibar-collapse", egui),
+		eIconsNews = enav && enav.length && $(".icon-news", enav),
 		headerHeight = eheader.height(),
-		guiNavHeight = eguiNav.height(),
-		ehandle = egui && $(".guibar-handle", egui),
+		guiNavHeight = eguiNav && eguiNav.height(),
+		ehandle = egui && egui.length && $(".guibar-handle", egui),
 		state = "normal",
 		isCollapse = 0;
 	
 	var point = guiNavHeight;
 	
-	ewin.on("resize", function() {
+	egui = egui.length ? egui : null;
+	
+	eguiNav && ewin.on("resize", function() {
 		guiNavHeight = eguiNav.height();
 		point === 1 && (point = guiNavHeight);
 	});
@@ -47,8 +49,7 @@ $(function() {
 		}
 	}
 	
-	eheader && ewin.scroll(doScroll);
-	ehandle && $("a", ehandle).click(function(e) {
+	ehandle && egui && ewin.scroll(doScroll) && $("a", ehandle).click(function(e) {
 		var sTop = ewin.scrollTop();
 		e.preventDefault();
 		if (state === "normal") {

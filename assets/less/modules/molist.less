@@ -8,13 +8,17 @@
 		left: 38%;
 		top: 0;
 		z-index: 1;
+		.transition(~"opacity 0.3s ease-in, left 0.3s ease-in");
 		margin-left: 15px;
 		margin-top: 15px;
 		width: 237px;
+		opacity: 1;
 	}
 	.invisible {
 		position: relative;
 		float: none;
+		.transition(none);
+		opacity: 0;
 		img {
 			display: none;
 		}

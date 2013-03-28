@@ -21,14 +21,15 @@ $layoutConfig
 </head>
 
 <body>
-#parse("../parts/header.vm")
+#parse("../modules/header.vm")
 <div class="pager">
 <div class="container">
 $layoutContent
 </div>
 </div>
-#parse("../parts/backtotop.vm")
-#parse("../parts/feedback.vm")
+#parse("../modules/footer.vm")
+#parse("../modules/backtotop.vm")
+#parse("../modules/feedback.vm")
 #if($pagejs)#foreach($js in $pagejs)
 	<script src="$js"></script>
 #end#end

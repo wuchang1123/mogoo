@@ -1,5 +1,6 @@
 #if($molist)
 #set($invisible=true)
+#set($lazyload=true)
 #foreach($mo in $molist)
 #parse("../../modules/mo-news.vm")
 #end

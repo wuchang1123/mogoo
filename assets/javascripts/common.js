@@ -5,6 +5,7 @@
 @import "./global/Array.js";
 @import "./global/VTPL.js";
 @import "./global/MG.js";
+@import "./global/windows.js";
 @import "./global/scroll.js";
 @import "./global/WaterFall.js";
 @import "./modules/*";

@@ -1,15 +1,17 @@
+#set($showHeaderGui=false)
 #set($layout="main")
-sdsdsds
-#set($f=9)
-$f
-$test
 
-<ol>
-#foreach($user in $users)
-<li>$user.get("nick")</li>
-#end
-</ol>
-
-<script>
-console.log(_);
-</script>
+<section class="mo-end">
+	<article class="mo-content">
+		<div class="metawrap">
+			<h1>$mo.get("title")</h1>
+			#set($shop = $mo.get("shop"))#if ($shop)
+			<a href="$shop.get("link")" target="_blank" class="btn shop">售价：$shop.get("price")元<span class="icon-shoppingcart"></span></a>
+			#end
+		</div>
+		<div class="contentwrap">
+			$mo.get("content")
+			<p><a href="#$mo.get("mid")" class="js-mo-mark btn">收藏</a></p>
+		</div>
+	</article>
+</section>

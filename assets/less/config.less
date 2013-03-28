@@ -56,8 +56,11 @@
 // Based on 14px font-size and 20px line-height
 
 @fontSizeLarge:         @baseFontSize * 1.25; // ~18px
+@lineHeightLarge:       @baseLineHeight * 1.25;
 @fontSizeSmall:         @baseFontSize * 0.87; // ~12px
+@lineHeightSmall:       @baseLineHeight * 0.87;
 @fontSizeMini:          @baseFontSize * 0.75; // ~11px
+@lineHeightMini:        @baseLineHeight * 0.75;
 
 @paddingLarge:          11px 19px; // 44px
 @paddingSmall:          2px 10px;  // 26px
@@ -66,6 +69,30 @@
 @baseBorderRadius:      4px;
 @borderRadiusLarge:     6px;
 @borderRadiusSmall:     3px;
+
+// Buttons
+// -------------------------
+@btnBackground:                     @white;
+@btnBackgroundHighlight:            darken(@white, 10%);
+@btnBorder:                         #ccc;
+
+@btnPrimaryBackground:              @linkColor;
+@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
+
+@btnInfoBackground:                 #5bc0de;
+@btnInfoBackgroundHighlight:        #2f96b4;
+
+@btnSuccessBackground:              #62c462;
+@btnSuccessBackgroundHighlight:     #51a351;
+
+@btnWarningBackground:              lighten(@orange, 15%);
+@btnWarningBackgroundHighlight:     @orange;
+
+@btnDangerBackground:               #ee5f5b;
+@btnDangerBackgroundHighlight:      #bd362f;
+
+@btnInverseBackground:              #444;
+@btnInverseBackgroundHighlight:     @grayDarker;
 
 // Z-index master list
 // -------------------------

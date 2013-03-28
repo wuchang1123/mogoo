@@ -1,3 +1,10 @@
 {
-	"title": "177"
+	"title": "177",
+	"pagecss": [
+		"/assets/css/app/endpage/mo.css"
+	],
+	"pagejs": [
+		"/assets/js/app/endpage/mo.js"
+	],
+	"mo": "{{mo}}"
 }

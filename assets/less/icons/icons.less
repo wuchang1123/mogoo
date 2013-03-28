@@ -3,15 +3,18 @@
 }
 
 .icon {
+	/* common */
 	&-news,
 	&-search,
-	&-feeback {
+	&-feeback,
+	&-shoppingcart,
+	&-ok-40 {
 		.hide-text();
 		.inline-block();
 		background: @url-global-icons no-repeat 0 0;
 	}
 	
-	/* 16x16*/
+	/* 16 x 16 */
 	&-search,
 	&-feeback,
 	&-news {
@@ -28,5 +31,20 @@
 	}
 	&-news {
 		background-position: -54px -84px;
+	}
+	
+	/* 20 x 20*/
+	&-shoppingcart {
+		.size(20px, 20px);
+	}
+	&-shoppingcart {
+		background-position: 0 -102px;
+	}
+	
+	&-ok-40 {
+		.size(40px, 40px);
+	}
+	&-ok-40 {
+		background-position: 0 -124px;
 	}
 }

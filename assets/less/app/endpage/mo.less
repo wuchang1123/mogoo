@@ -1,0 +1,93 @@
+@import "../../config.less";
+@import "../../global/mixins.less";
+
+@meta-height: 56px;
+.mo {
+	&-end {
+		margin: 0 auto;
+		padding: 30px 0;
+		// 默认四列
+		width: 993px;
+	}
+	&-content {
+		background: #fff;
+		border: 1px solid #c6c6c6;
+		.border-radius(20px);
+		.metawrap,
+		.contentwrap {
+			padding: 40px 45px 30px;
+		}
+		.metawrap {
+			padding-top: 0;
+			padding-bottom: 0;
+			height: @meta-height;
+			background: #f8c301;
+			.border-top-radius(20px);
+			line-height: @meta-height;
+			color: @grayDark;
+			text-align: right;
+			h1 {
+				text-align: left;
+				margin-bottom: -@meta-height;
+				font-size: 18px;
+			}
+			.shop {
+				.border-radius(12px);
+				.icon-shoppingcart {
+					margin: 0 0 0 6px;
+					vertical-align: top;
+				}
+			}
+		}
+		.contentwrap {
+			line-height: @lineHeightLarge;
+			p, h1, h2, h3, h4, h5, h6 {
+				margin: 6px 0 10px;
+			}
+			img {
+				max-width: 100%;
+			}
+		}
+	}
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+	.mo {
+		&-end {
+			width: 98%;
+		}
+		&-content {
+			.border-radius(10px);
+			.metawrap,
+			.contentwrap {
+				padding: 10px;
+			}
+			.metawrap {
+				.border-top-radius(10px);
+			}
+		}
+	}
+}
+
+@media (max-width: 639px) {
+	.mo {
+		&-end {
+			width: 96%;
+		}
+		&-content {
+			.border-radius(0);
+			.metawrap,
+			.contentwrap {
+				padding: 5px;
+			}
+			.metawrap {
+				.border-radius(0);
+				height: @meta-height * 2;
+				text-align: left;
+				h1 {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}

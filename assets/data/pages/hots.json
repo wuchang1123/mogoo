@@ -1,0 +1,21 @@
+{
+	"title": "177",
+	"pagecss": [
+		"/assets/css/app/index.css"
+	],
+	"pagejs": [
+		"/assets/js/app/index.js"
+	],
+	"molist": [
+		"{{mo}}",
+		"{{mo2}}",
+		"{{mo}}",
+		"{{mo}}",
+		"{{mo}}",
+		"{{mo6}}",
+		"{{mo7}}",
+		"{{mo}}",
+		"{{mo1}}",
+		"{{mo2}}"
+	]
+}
