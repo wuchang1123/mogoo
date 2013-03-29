@@ -20,7 +20,7 @@
 				callback();
 			} else {
 				img.onload = function() {
-					console.log(img);
+					//console.log(img);
 					this.onload = null;
 					this.loaded = true;
 					callback();
@@ -184,7 +184,7 @@
 				$adjustFrist = $("img.js-cover", blocks.eq(tmpIndex)),
 				adjustFristLen = $adjustFrist.size();
 			
-			console.log(tmpIndex, $adjustFrist);
+			//console.log(tmpIndex, $adjustFrist);
 			
 			function runBind() {
 				blocks.each(function(index, block) {
