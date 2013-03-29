@@ -181,7 +181,8 @@
 			})(this._runId);
 			
 			var adjustFristCount = 0,
-				$adjustFrist = $("img.js-cover", blocks.eq(tmpIndex)),
+				$adjustFristBlock = blocks.eq(tmpIndex),
+				$adjustFrist = $("img.js-cover", $adjustFristBlock),
 				adjustFristLen = $adjustFrist.size();
 			
 			//console.log(tmpIndex, $adjustFrist);
@@ -223,7 +224,7 @@
 				});
 			}
 			
-			adjustFristLen ? $adjustFrist.load(function() {
+			adjustFristLen && 1 != $adjustFristBlock.attr("data-binded-load") ? $adjustFrist.load(function() {
 				++adjustFristCount == adjustFristLen && runBind();
 			}) : runBind();
 			
