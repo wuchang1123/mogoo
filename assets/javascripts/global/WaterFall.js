@@ -3,18 +3,44 @@
 	
 	function onEachImageLoad(imgs, runFn, callback) {
 		imgs.each(function(index, img) {
-			if ((img.loaded || img.complete) && !/blank\.gif$/.test(img.src)) {
-				callback(img);
+			/*var tid;
+			var cb = function() {
+				tid && clearTimeout(tid);
+				tid = setTimeout(function() {
+					console.log(index, img);
+					callback && callback(img);
+				}, 0);
+			}
+			img.onload = function() {
+				this.onload = null;
+				this.loaded = true;
+				cb();
+			};*/
+			if (img.loaded || img.complete) {
+				callback();
 			} else {
 				img.onload = function() {
+					console.log(img);
 					this.onload = null;
 					this.loaded = true;
-					callback(img);
+					callback();
 				};
 			}
 			runFn && runFn(img);
 		});
 	}
+	/*
+		if (img.loaded || img.complete) {
+			callback();
+		} else {
+			img.onload = function() {
+				this.onload = null;
+				this.loaded = true;
+				callback();
+			};
+		}
+		
+	*/
 	
 	
 	function WaterFall(wrap, option) {
@@ -114,7 +140,7 @@
 				tmpIndex = host._nowIndex || 0;
 			var oneCompleted, imgsCompleted;
 			
-			if (!blocks) return;
+			if (!blockLen) return;
 			host._blockLen = blockLen;
 			
 			if (isAll) {
@@ -133,24 +159,20 @@
 			blockWidth = host._blockWidth || host._getBlockWidth(blocks.eq(0));
 			
 			this._colCount = this._colCount || parseInt(listWidth / blockWidth);
-			//console.log("this._nowIndex",this._nowIndex);
-			//alert([listWidth, this._colCount, blockWidth].join("--"));
 			
 			(function(runId) {
+				var completeCount = 0;
+				var adjustCount = blockLen - tmpIndex;
 				// 调整位置主要函数
 				oneCompleted = function(block) {
 					// 运行的 id 已经超时
-					if (host._runId !== runId) {
-						return;
-					}
-					host._setBlockPosition(block, tmpIndex < blockLen);
-					if (tmpIndex < blockLen) {
-						run(++tmpIndex);
-					} else {
+					if (host._runId !== runId) return;
+					host._setBlockPosition(block, completeCount++ < adjustCount);
+					if (completeCount >= adjustCount) {
 						host._inloading = false;
 						host._nowIndex = blockLen;
 					}
-					(tmpIndex % 4 === 0 || tmpIndex >= blockLen) && list.css("height", host._maxHeight);
+					list.css("height", host._maxHeight);
 					//console.log("oneCompleted", block);
 				};
 				imgsCompleted = function(block, len, count) {
@@ -158,6 +180,54 @@
 				};
 			})(this._runId);
 			
+			var adjustFristCount = 0,
+				$adjustFrist = $("img.js-cover", blocks.eq(tmpIndex)),
+				adjustFristLen = $adjustFrist.size();
+			
+			console.log(tmpIndex, $adjustFrist);
+			
+			function runBind() {
+				blocks.each(function(index, block) {
+					//console.log(arguments);
+					if (index < host._nowIndex) return;
+					block = block && $(block);
+					if (block.attr("data-binded-load")) {
+						oneCompleted(block);
+					} else {
+						var imgs = $("img.js-cover", block),
+							imgLen = imgs && imgs.length,
+							imgCount = 0;
+						if (imgLen) {
+							var called = 0, tid;
+							var ready = function(img) {
+								tid && clearTimeout(tid);
+								if (called) return;
+								called = true;
+								imgCount = img ? ++imgCount : imgLen;
+								block.attr("data-binded-load", 1);
+								imgsCompleted(block, imgLen, imgCount);
+							};
+							onEachImageLoad(imgs, function(img) {
+								img.src = ($(img).attr("data-src") || img.src) + "?t=" + Math.random();
+							}, ready);
+							tid = setTimeout(function() {
+								if (called) return;
+								imgs.css("height", "180px");
+								ready();
+							}, 3000 * imgLen);
+						} else {
+							oneCompleted(block);
+							block.attr("data-binded-load", 1);
+						}
+					}
+				});
+			}
+			
+			adjustFristLen ? $adjustFrist.load(function() {
+				++adjustFristCount == adjustFristLen && runBind();
+			}) : runBind();
+			
+			/*
 			function run(index) {
 				var block = blocks && blocks.eq(index);
 				if (index < host._nowIndex) return;
@@ -180,10 +250,20 @@
 								block.attr("data-binded-load", 1);
 								imgsCompleted(block, imgLen, imgCount);
 							};
-							onEachImageLoad(imgs, function(img) {
-								var eimg = $(img);
-								eimg.attr("src", eimg.attr("data-src") || img.src);
-							}, ready);
+							var bindimg = function() {
+								onEachImageLoad(imgs, function(img) {
+									var eimg = $(img);
+									img.src = (eimg.attr("data-src") || img.src) + "?t=" + Math.random();
+								}, ready);	
+							};
+							if (index == host._nowIndex) {
+								var imgCount2 = 0;
+								imgs.one("load", function() {
+									++imgCount2 == imgLen && bindimg();
+								})
+							} else {
+								bindimg();
+							}
 							// 超时
 							tid = setTimeout(function() {
 								if (called) return;
@@ -198,7 +278,7 @@
 					}
 				}
 			}
-			run(tmpIndex);
+			run(tmpIndex);*/
 		},
 		stop: function() {
 			this._instop = true;

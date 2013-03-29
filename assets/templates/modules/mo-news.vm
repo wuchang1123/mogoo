@@ -1,7 +1,7 @@
 <li id="mo$mo.get("mid")" class="js-block moblock #if($invisible) invisible#end"><!---->
 	<div class="mowrap">
 		#if($lazyload)
-		<div class="photo"><a href="$mo.get("link")"><img src="/assets/images/global/blank.gif" data-src="$mo.get("cover")" width="225" alt="$mo.get("title")" class="js-cover" /></a></div>
+		<div class="photo"><a href="$mo.get("link")"><img src="$mo.get("cover")" width="225" alt="$mo.get("title")" class="js-cover" /></a></div>
 		#else
 		<div class="photo"><a href="$mo.get("link")"><img src="$mo.get("cover")" width="225" alt="$mo.get("title")" class="js-cover" /></a></div>
 		#end
