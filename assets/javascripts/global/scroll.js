@@ -32,8 +32,10 @@
 		callback(e);
 	});
 	$window.on("resize", function(e) {
-		makeVisible();
-		callback(e);
+        var lastW = vWidth,
+            lastH = vHeight;
+        makeVisible();
+    	lastW != vWidth && lastH != vHeight && callback(e);
 	});
 	
 	MG.scroll = {

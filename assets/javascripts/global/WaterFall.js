@@ -20,7 +20,7 @@
 				callback();
 			} else {
 				img.onload = function() {
-					//console.log(img);
+					//console.log("onload",img);
 					this.onload = null;
 					this.loaded = true;
 					callback();
@@ -113,7 +113,7 @@
 			};
 			(!isNoEnd || this._lastOffset == udf) && (this._lastOffset = newOffset);
 			//this._lastOffset && fblock.css(this._lastOffset);
-			//console.log(isNoEnd, this._lastOffset);
+			//console.log("setpos",isNoEnd, this._lastOffset);
 			fblock.hasClass("invisible") && fblock.removeClass("invisible");
 			fblock.css(newOffset);
 			indexHeight = this._heights[index] = indexHeight + this._getBlockHeight(fblock);
@@ -173,7 +173,6 @@
 						host._nowIndex = blockLen;
 					}
 					list.css("height", host._maxHeight);
-					//console.log("oneCompleted", block);
 				};
 				imgsCompleted = function(block, len, count) {
 					len <= count && oneCompleted(block);
@@ -209,7 +208,7 @@
 								imgsCompleted(block, imgLen, imgCount);
 							};
 							onEachImageLoad(imgs, function(img) {
-								img.src = ($(img).attr("data-src") || img.src) + "?t=" + Math.random();
+							//	img.src = ($(img).attr("data-src") || img.src) + "?t=" + Math.random();
 							}, ready);
 							tid = setTimeout(function() {
 								if (called) return;
@@ -223,10 +222,20 @@
 					}
 				});
 			}
-			
-			adjustFristLen && 1 != $adjustFristBlock.attr("data-binded-load") ? $adjustFrist.load(function() {
-				++adjustFristCount == adjustFristLen && runBind();
-			}) : runBind();
+            
+            //if (adjustFristLen && 1 != $adjustFristBlock.attr("data-binded-load")) {
+            //    "complete" === $adjustFrist[0].readyState || $adjustFrist[0].complete ? runBind()
+             //       : $adjustFrist.one("load", function() {
+            //            ++adjustFristCount == adjustFristLen && runBind();
+        	//        });
+            //} else {
+                runBind();
+            //}
+            
+			//adjustFristLen && 1 != $adjustFristBlock.attr("data-binded-load") && ("complete" !== $adjustFrist[0].readyState || true != $adjustFrist[0].complete) ? $adjustFrist.on("load", function() {
+				//console.log(90);
+            //    ++adjustFristCount == adjustFristLen && runBind();
+			//}) : runBind();
 			
 			/*
 			function run(index) {
