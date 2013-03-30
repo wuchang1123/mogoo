@@ -9,7 +9,9 @@
 .header {
 	width: 100%;
 	padding-top: @header-outter-height;
+	zoom: 1;
 	.navbar {
+		.inline-block();
 		position: fixed;
 		top: 0;
 		z-index: @zindexFixedNavbar;
@@ -18,6 +20,7 @@
 		height: @header-height + 1;
 		font-family: @serifFontFamily;
 		//font-size: @fontSizeSmall;
+		zoom: 1;
 		&-content {
 			border-bottom: 1px solid #d6b640;
 			height: @header-height;
@@ -74,6 +77,7 @@
 			}
 		}
 		&-search {
+			.inline-block();
 			margin: (@header-height - @header-search-height) / 2 10px 0;
 			width: 160px;
 			height: @header-search-height;
@@ -157,7 +161,9 @@
 					height: @cell-height;
 				}
 				ul {
+					float: left;
 					margin: -@cell-height 0 0 70px;
+					height: @cell-height;
 					padding-top: 10px;
 					li {
 						.inline-block();

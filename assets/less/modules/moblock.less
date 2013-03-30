@@ -2,6 +2,7 @@
 	@mo-space: 5px;
 	@mo-radius: 18px;
 	@line-space: 14px;
+	.inline-block();
 	float: left;
 	.mowrap {
 		padding-left: @mo-space;
@@ -73,7 +74,8 @@
 		}
 		.avator {
 			height: 30px;
-			overflow: hidden;
+			position: relative;
+			z-index: 1;
 			img {
 				.border-radius(3px);
 			}
