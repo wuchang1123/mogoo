@@ -112,12 +112,10 @@
 				top: indexHeight + "px"
 			};
 			(!isNoEnd || this._lastOffset == udf) && (this._lastOffset = newOffset);
-			//this._lastOffset && fblock.css(this._lastOffset);
-			//console.log("setpos",isNoEnd, this._lastOffset);
 			fblock.hasClass("invisible") && fblock.removeClass("invisible");
 			fblock.css(newOffset);
 			indexHeight = this._heights[index] = indexHeight + this._getBlockHeight(fblock);
-			for(var i = 0; i < colLen; i++) {
+			for (var i = 0; i < colLen; i++) {
 				tmpHeight = heights[i] || 0;
 				//console.log("find", i, tmpHeight, indexHeight);
 				if (indexHeight > tmpHeight) {
