@@ -1,21 +1,50 @@
 {
+	"assets": {
+		"js": {
+			"common": [
+				"vendor/jquery/jquery-1.9.1.js",
+				"vendor/bootstrap/bootstrap-affix.js",
+				"vendor/bootstrap/bootstrap-alert.js",
+				"vendor/bootstrap/bootstrap-button.js",
+				"vendor/bootstrap/bootstrap-carousel.js",
+				"vendor/bootstrap/bootstrap-collapse.js",
+				"vendor/bootstrap/bootstrap-dropdown.js",
+				"vendor/bootstrap/bootstrap-modal.js",
+				"vendor/bootstrap/bootstrap-tooltip.js",
+				"vendor/bootstrap/bootstrap-popover.js",
+				"vendor/bootstrap/bootstrap-scrollspy.js",
+				"vendor/bootstrap/bootstrap-tab.js",
+				"vendor/bootstrap/bootstrap-transition.js",
+				"vendor/bootstrap/bootstrap-typeahead.js",
+				"vendor/underscore/underscore.js",
+				"vendor/backbone/backbone.js",
+				"vendor/velocity/index.js",
+				"global/*"
+			]
+		},
+		"css": {
+			"common": [
+				
+			]
+		}
+	},
 	"view": {
 		"engine": "velocity",
 		"enginePath": "lib/views/velocity.js",
 		"tplPath": "assets/templates"
 	},
-    "db": {
-        "USER": "test",
-        "PASS": "123456",
-        "HOST": "localhost",
-        "PORT": "",
-        "DATABASE": "mogoo"
-    },
-    "db-nae": {
-        "USER": "gyUs2GsGpv0H",
-        "PASS": "pCh4vbOMIv",
-        "HOST": "127.0.0.1",
-        "PORT": "20088",
-        "DATABASE": "NLkHctptZqa2"
-    }
+	"db": {
+		"USER": "test",
+		"PASS": "123456",
+		"HOST": "localhost",
+		"PORT": "",
+		"DATABASE": "mogoo"
+	},
+	"db-nae": {
+		"USER": "gyUs2GsGpv0H",
+		"PASS": "pCh4vbOMIv",
+		"HOST": "127.0.0.1",
+		"PORT": "20088",
+		"DATABASE": "NLkHctptZqa2"
+	}
 }

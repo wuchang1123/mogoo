@@ -1,7 +1,60 @@
 #!/usr/bin/env node
 
-var currentPath = __dirname.replace(/\/bin$/, "");
-var nodePath    = currentPath + "/node_modules";
+var rootPath = __dirname.replace(/\/bin$/, "");
+var nodePath    = rootPath + "/node_modules";
 var exec        = require('child_process').exec;
 var argv        = process.argv.slice(2);
 var argType     = argv[0];
+
+var path = require('path'),
+	fs = require('fs'),
+	exists = fs.existsSync || path.existsSync,
+	utils = require(rootPath + '/lib/utils');
+
+var pubPath = rootPath + "/publish";
+var assetsPath = rootPath + "/assets";
+
+exec([
+	"rm -fR " + pubPath,
+	"mkdir " + pubPath,
+	"mkdir " + pubPath + "/css/",
+	"mkdir " + pubPath + "/js/",
+	"mkdir " + pubPath + "/images/",
+	"mkdir " + pubPath + "/js/templates/"
+].join(";"), function(error, stdout, stderr) {
+	console.log(error || "mkdir sussess!");
+	
+	// 拷贝图片
+	exec([
+		"cp -fR " + assetsPath + "/images/ " + pubPath + "/images/",
+		"cd " + pubPath + "/images/",
+		"find . -name 'PSDs' -type d -print | xargs rm -rf",
+		"find . -name '*.psd' -type f -print | xargs rm -rf"
+	].join(";"), function(error, stdout, stderr) {
+		console.log(error || "cp assets sussess!");
+	});
+	
+	// 编译 less
+	var lessc = nodePath + "/less/bin/lessc ";
+	var lessxargs = " --include-path=" + assetsPath + "/less/ --yui-compress";
+	var appLessPaths = utils.getFilePathsByDir(assetsPath + "/less/app"),
+		appCM = [], appCMLen = 0, appCMRun = 0;
+	appCM.push(lessc + assetsPath + "/less/global/global.less " + pubPath + "/css/global/global.css" + lessxargs);
+	appLessPaths.forEach(function(app) {
+		app.replace(/.*assets[\/]less(.*)\.less/, function($0, appPath) {
+			appCM.push(lessc + app + " " + pubPath + "/css" + appPath + ".css" + lessxargs);
+		});
+	});
+	appCMLen = appCM.length;
+	appCM.forEach(function(cmd) {
+		exec(cmd, function(error, stdout, stderr) {
+			if (error) {
+				console.log(error || "lessc sussess!");
+			} else if(++appCMRun == appCMLen) {
+				console.log("lessc sussess!");
+			}
+			
+		});
+	});
+	
+});
