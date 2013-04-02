@@ -3,19 +3,6 @@
 	
 	function onEachImageLoad(imgs, runFn, callback) {
 		imgs.each(function(index, img) {
-			/*var tid;
-			var cb = function() {
-				tid && clearTimeout(tid);
-				tid = setTimeout(function() {
-					console.log(index, img);
-					callback && callback(img);
-				}, 0);
-			}
-			img.onload = function() {
-				this.onload = null;
-				this.loaded = true;
-				cb();
-			};*/
 			if (img.loaded || img.complete) {
 				callback();
 			} else {
@@ -29,19 +16,6 @@
 			runFn && runFn(img);
 		});
 	}
-	/*
-		if (img.loaded || img.complete) {
-			callback();
-		} else {
-			img.onload = function() {
-				this.onload = null;
-				this.loaded = true;
-				callback();
-			};
-		}
-		
-	*/
-	
 	
 	function WaterFall(wrap, option) {
 		if (wrap) {
@@ -159,19 +133,26 @@
 			this._colCount = this._colCount || parseInt(listWidth / blockWidth);
 			
 			(function(runId) {
-				var completeCount = 0;
-				var adjustCount = blockLen - tmpIndex;
+				var nowPosIndex = tmpIndex;
+				var nowBlock = blocks.eq(nowPosIndex);
 				// 调整位置主要函数
 				oneCompleted = function(block) {
 					// 运行的 id 已经超时
 					if (host._runId !== runId) return;
-					host._setBlockPosition(block, completeCount++ < adjustCount);
-					if (completeCount >= adjustCount) {
+					block.attr("data-imgloaded", 1);
+					//console.log(nowPosIndex < blockLen, nowBlock.attr("data-imgloaded"));
+					while(nowPosIndex < blockLen && nowBlock.attr("data-imgloaded")) {
+						//console.log(nowBlock, nowPosIndex);
+						host._setBlockPosition(nowBlock, nowPosIndex++ < blockLen);
+						nowBlock = blocks.eq(nowPosIndex);
+					}
+					if (nowPosIndex >= blockLen) {
 						host._inloading = false;
 						host._nowIndex = blockLen;
 					}
 					list.css("height", host._maxHeight);
 				};
+				// 计算图片完成
 				imgsCompleted = function(block, len, count) {
 					len <= count && oneCompleted(block);
 				};
@@ -181,8 +162,6 @@
 				$adjustFristBlock = blocks.eq(tmpIndex),
 				$adjustFrist = $("img.js-cover", $adjustFristBlock),
 				adjustFristLen = $adjustFrist.size();
-			
-			//console.log(tmpIndex, $adjustFrist);
 			
 			function runBind() {
 				blocks.each(function(index, block) {
@@ -220,73 +199,7 @@
 					}
 				});
 			}
-            
-            //if (adjustFristLen && 1 != $adjustFristBlock.attr("data-binded-load")) {
-            //    "complete" === $adjustFrist[0].readyState || $adjustFrist[0].complete ? runBind()
-             //       : $adjustFrist.one("load", function() {
-            //            ++adjustFristCount == adjustFristLen && runBind();
-        	//        });
-            //} else {
-                runBind();
-            //}
-            
-			//adjustFristLen && 1 != $adjustFristBlock.attr("data-binded-load") && ("complete" !== $adjustFrist[0].readyState || true != $adjustFrist[0].complete) ? $adjustFrist.on("load", function() {
-				//console.log(90);
-            //    ++adjustFristCount == adjustFristLen && runBind();
-			//}) : runBind();
-			
-			/*
-			function run(index) {
-				var block = blocks && blocks.eq(index);
-				if (index < host._nowIndex) return;
-				block = block && $(block);
-				if (block) {
-					if (block.attr("data-binded-load")) {
-						oneCompleted(block);
-					} else {
-						var imgs = $("img.js-cover", block),
-							imgLen = imgs && imgs.length,
-							imgCount = 0;
-						if (imgLen) {
-							var called = false, tid;
-							var ready = function(img) {
-								tid && clearTimeout(tid);
-								if (called) return;
-								called = true;
-								img && imgCount++;
-								//console.log("ready",called, img, imgLen, imgCount);
-								block.attr("data-binded-load", 1);
-								imgsCompleted(block, imgLen, imgCount);
-							};
-							var bindimg = function() {
-								onEachImageLoad(imgs, function(img) {
-									var eimg = $(img);
-									img.src = (eimg.attr("data-src") || img.src) + "?t=" + Math.random();
-								}, ready);	
-							};
-							if (index == host._nowIndex) {
-								var imgCount2 = 0;
-								imgs.one("load", function() {
-									++imgCount2 == imgLen && bindimg();
-								})
-							} else {
-								bindimg();
-							}
-							// 超时
-							tid = setTimeout(function() {
-								if (called) return;
-								imgs.css("height", "180px");
-								imgCount = imgLen;
-								ready();
-							}, 3000 * imgLen);
-						} else {
-							oneCompleted(block);
-							block.attr("data-binded-load", 1);
-						}
-					}
-				}
-			}
-			run(tmpIndex);*/
+			runBind();
 		},
 		stop: function() {
 			this._instop = true;
