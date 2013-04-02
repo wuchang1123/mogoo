@@ -35,7 +35,8 @@
         var lastW = vWidth,
             lastH = vHeight;
         makeVisible();
-    	lastW != vWidth && lastH != vHeight && callback(e);
+        console.log(lastW != vWidth, lastH != vHeight);
+    	(lastW != vWidth || lastH != vHeight) && callback(e);
 	});
 	
 	MG.scroll = {
