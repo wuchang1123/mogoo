@@ -2,6 +2,7 @@
 
 var rootPath = __dirname.replace(/\/bin$/, "");
 var nodePath    = rootPath + "/node_modules";
+var uglifyjsBin = nodePath + "/uglify-js/bin/uglifyjs";
 var exec        = require('child_process').exec;
 var argv        = process.argv.slice(2);
 var argType     = argv[0];
@@ -11,7 +12,7 @@ var path = require('path'),
 	exists = fs.existsSync || path.existsSync,
 	utils = require(rootPath + '/lib/utils');
 
-var pubPath = rootPath + "/publish";
+var pubPath = rootPath + "/public";
 var assetsPath = rootPath + "/assets";
 
 exec([
@@ -20,7 +21,7 @@ exec([
 	"mkdir " + pubPath + "/css/",
 	"mkdir " + pubPath + "/js/",
 	"mkdir " + pubPath + "/images/",
-	"mkdir " + pubPath + "/js/templates/"
+	"mkdir " + pubPath + "/templates/"
 ].join(";"), function(error, stdout, stderr) {
 	console.log(error || "mkdir sussess!");
 	
@@ -31,8 +32,47 @@ exec([
 		"find . -name 'PSDs' -type d -print | xargs rm -rf",
 		"find . -name '*.psd' -type f -print | xargs rm -rf"
 	].join(";"), function(error, stdout, stderr) {
-		console.log(error || "cp assets sussess!");
+		console.log(error || "cp images sussess!");
 	});
+	
+	var jsTmpPath = pubPath + "/js-tmp/";
+	// 拷贝 js
+	exec([
+		"cp -fR " + assetsPath + "/javascripts/ " + jsTmpPath,
+		"cd " + jsTmpPath,
+		"mkdir templates"
+	].join(";"), function(error, stdout, stderr) {
+		console.log(error || "cp javascripts sussess!");
+		// 编译 js 的 import
+		[jsTmpPath + "common.js"].forEach(function(file, index) {
+			var str = exists(file) ? fs.readFileSync(file, 'utf8') : '';
+			fs.writeFileSync(file, utils.parseJsImport(str));
+		});
+		// 压缩
+		var jsfiles = utils.getFilePathsByDir(jsTmpPath);
+		var jsfileMaxIndex = jsfiles.length - 1;
+		jsfiles.forEach(function(file, index) {
+			if (!/\.js$/.test(file)) return;
+			exec([
+				"mkdir -p " + path.dirname(file).replace("/js-tmp", '/js'),
+				uglifyjsBin + " " + file + " -o " + file.replace("/js-tmp/", '/js/')
+			].join(";"), function(error, stdout, stderr) {
+				error && console.log(error);
+				if (index >= jsfileMaxIndex) {
+					exec([
+						"rm -fR " + jsTmpPath
+					].join(";"), function(error, stdout, stderr) {});
+					console.log("uglify javascripts sussess!");
+				}
+			});
+		});
+	});
+	
+	// 拷贝 vm 模板
+	
+	// 预先解析 vm 的 layout
+	
+	// 编译 vm 模板 to js
 	
 	// 编译 less
 	var lessc = nodePath + "/less/bin/lessc ";
