@@ -6,6 +6,7 @@
 @gui-handle-width: 100px;
 @gui-handle-height: 30px;
 @header-search-height: 26px;
+@header-navbar-bg: #f8c301;
 .header {
 	width: 100%;
 	padding-top: @header-outter-height;
@@ -16,7 +17,7 @@
 		top: 0;
 		z-index: @zindexFixedNavbar;
 		width: 100%;
-		background: #f8c301;
+		background: @header-navbar-bg;
 		height: @header-height + 1;
 		font-family: @serifFontFamily;
 		//font-size: @fontSizeSmall;
@@ -327,25 +328,33 @@
 	@gui-bar-width-responsive: 378px;
 	@gui-bar-height-responsive: 430px;
 	@gui-collapse-height-responsive: @gui-bar-height-responsive - (@gui-bar-height - @gui-collapse-height);
-	@header-outter-height: @header-height * 3 + 1;
+	@header-outter-height: @header-height * 2 + 1;
 	.header {
 		padding-top: @header-outter-height;
 		.navbar {
+			background: lighten(@header-navbar-bg, 15%);
 			height: @header-outter-height;
 			&-content {
-				height: @header-height * 3;
+				height: @header-height * 2;
 			}
+			&-logo,
 			&-nav {
-				clear: right;
-				margin-bottom: 15px;
-			}
-			&-search,
-			&-member {
 				clear: both;
 				float: none;
 			}
+			&-logo {
+				background: @header-navbar-bg;
+			}
+			&-nav {
+				margin-top: -@header-height;
+				margin-left: 70px;
+				height: @header-height;
+			}
 			&-search {
-				margin-bottom: 10px;
+				float: left;
+			}
+			&-member {
+				
 			}
 		}
 		.guibar {
@@ -359,17 +368,17 @@
 				padding-top: @header-outter-height + @gui-collapse-height-responsive + @gui-handle-bar-height + @gui-handle-height + 1;
 				.guibar {
 					margin-left: -(@gui-bar-width-responsive / 2);
-					margin-top: 0 - @gui-collapse-height-responsive + @header-height * 2 - 1;
+					margin-top: 0 - @gui-collapse-height-responsive + @header-height * 1 - 1;
 				}
 				&-open {
 					.guibar {
-						margin-top: 0;
+						margin-top: @header-height;
 					}
 				}
 				&-close {
 					padding-top: @header-outter-height + @gui-handle-bar-height + @gui-handle-height + 1;
 					.guibar {
-						margin-top: 0 - @gui-collapse-height-responsive + @header-height * 2 - 1;
+						margin-top: 0 - @gui-collapse-height-responsive + @header-height * 1 - 1;
 					}
 				}
 			}
@@ -380,7 +389,7 @@
 			}
 			&-close {
 				.guibar {
-					margin-top: 0 - @gui-collapse-height-responsive + @header-height * 2 - 1;
+					margin-top: 0 - @gui-collapse-height-responsive + @header-height * 0 - 1;
 				}
 			}
 		}

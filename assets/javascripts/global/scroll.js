@@ -35,7 +35,6 @@
         var lastW = vWidth,
             lastH = vHeight;
         makeVisible();
-        console.log(lastW != vWidth, lastH != vHeight);
     	(lastW != vWidth || lastH != vHeight) && callback(e);
 	});
 	
