@@ -1,5 +1,6 @@
 .icon-loading {
-	&-32 {
+	&-32,
+	&-48 {
 		.hide-text();
 		.inline-block();
 	}
@@ -7,5 +8,10 @@
 	&-32 {
 		.size(32px, 32px);
 		background: url("@{bg-prefix}/global/loading32x32.gif") no-repeat 0 0;
+	}
+	
+	&-48 {
+		.size(48px, 48px);
+		background: url("@{bg-prefix}/global/loading48x48.gif") no-repeat 0 0;
 	}
 }
