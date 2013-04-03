@@ -16,9 +16,12 @@
 		display: block;
 		margin-top: @mo-space;
 		text-align: center;
+		a {
+			cursor: url("@{bg-prefix}/global/cur/1.cur"),url("@{bg-prefix}/global/cur/1.png"),auto;
+		}
 		img {
 			float: left;
-			.border-top-radius(@mo-radius);
+			.border-top-radius(@mo-radius - 3px);
 		}
 	}
 	.title-line {
@@ -81,6 +84,8 @@
 		}
 		.data {
 			margin: -30px 0 0 50px;
+			position: relative;
+			z-index: 1;
 			a,
 			a:visited {
 				color: #f9ca1f;
