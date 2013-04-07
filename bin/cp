@@ -23,6 +23,13 @@ if (argType) {
 		exec("mkdir " + rootPath + "/assets/javascripts/vendor/underscore/;cp -R " + nodePath + "/underscore/underscore.js " + rootPath + "/assets/javascripts/vendor/underscore/underscore.js", function(error, stdout, stderr) {
 			console.log(error || "build underscore lib success!");
 		});
+	} else if (argType == "knockout") {
+		exec([
+			"mkdir " + rootPath + "/assets/javascripts/vendor/knockout/",
+			"cp -R " + nodePath + "/knockout/build/output/knockout-latest.debug.js " + rootPath + "/assets/javascripts/vendor/knockout/knockout.js"
+		].join(";"), function(error, stdout, stderr) {
+			console.log(error || "build underscore lib success!");
+		});
 	} else if (argType == "all") {
 		exec([
 			rootPath + "/bin/cp velocity",
