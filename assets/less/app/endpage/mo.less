@@ -10,8 +10,9 @@
 		width: 993px;
 	}
 	&-content {
+		@radius-content: 12px;
 		background: #fff;
-		.border-radius(10px);
+		.border-radius(@radius-content);
 		.metawrap,
 		.contentwrap {
 			padding: 40px 45px 30px;
@@ -21,7 +22,7 @@
 			padding-bottom: 0;
 			height: @meta-height;
 			background: #f8c301;
-			.border-top-radius(10px);
+			.border-top-radius(@radius-content);
 			line-height: @meta-height;
 			color: @grayDark;
 			text-align: right;
