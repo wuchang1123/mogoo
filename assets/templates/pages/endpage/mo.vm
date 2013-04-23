@@ -1,4 +1,4 @@
-#set($showHeaderGui=false)
+#set($showHeaderGui=true)
 #set($layout="main")
 
 <section class="mo-end">
